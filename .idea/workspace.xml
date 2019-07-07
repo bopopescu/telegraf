@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5671cbe9-0cfd-424b-8928-89c0724bab9c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/plugins/inputs/mysql/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/inputs/mysql/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/plugins/inputs/mysql/mysql.go" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/inputs/mysql/mysql.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -12,26 +11,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../../awesomeProject/mysql.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret selection-end-line="2255" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/plugins/inputs/mysql/mysql.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="24318">
-              <caret line="2255" selection-start-line="2255" selection-end-line="2255" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -63,6 +43,7 @@
       <find>dsnAddTimeout</find>
       <find>print</find>
       <find>FormatDSN</find>
+      <find>fmt</find>
     </findStrings>
     <replaceStrings>
       <replace>cloudcare_info</replace>
@@ -205,9 +186,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18864469" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.31623933" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -220,7 +200,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32959184" />
-      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.43265307" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.43265307" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -291,6 +271,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../../../awesomeProject/mysql.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="2255" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/plugins/inputs/mysql/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -301,17 +288,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../../awesomeProject/mysql.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="2255" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/plugins/inputs/mysql/mysql.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="24318">
-          <caret line="2255" selection-start-line="2255" selection-end-line="2255" />
+        <state relative-caret-position="300">
+          <caret line="732" column="36" selection-start-line="732" selection-start-column="33" selection-end-line="732" selection-end-column="36" />
         </state>
       </provider>
     </entry>

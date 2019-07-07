@@ -1200,7 +1200,7 @@ func (m *Mysql) GatherProcessListStatuses(db *sql.DB, serv string, acc telegraf.
 		var lock_rec int64
 		var lock_data int64
 
-		err = innodb_lock_waits_rows.Scan(&lock_id, &lock_trx_id, &lock_mode, &lock_type, &lock_table, &lock_index, &lock_space, &lock_page, &lock_rec, &lock_data, )
+		err = innodb_lock_waits_rows.Scan(&lock_id, &lock_trx_id, &lock_mode, &lock_type, &lock_table, &lock_index, &lock_space, &lock_page, &lock_rec, &lock_data)
 
 		if err != nil {
 			return err
@@ -1261,7 +1261,7 @@ func (m *Mysql) GatherProcessListStatuses(db *sql.DB, serv string, acc telegraf.
 		var time int64
 		var countnum int64
 
-		err = innodb_locks_counts_row.Scan(&id, &time, &countnum, )
+		err = innodb_locks_counts_row.Scan(&id, &time, &countnum)
 
 		if err != nil {
 			return err
@@ -1294,7 +1294,7 @@ func (m *Mysql) GatherProcessListStatuses(db *sql.DB, serv string, acc telegraf.
 		var Name string
 		var Status string
 
-		err = innodb_status_rows.Scan(&Type, &Name, &Status, )
+		err = innodb_status_rows.Scan(&Type, &Name, &Status)
 
 		if err != nil {
 			return err
@@ -1325,7 +1325,7 @@ func (m *Mysql) GatherProcessListStatuses(db *sql.DB, serv string, acc telegraf.
 		var Status string
 		var deadlock int64
 
-		err = dead_lock_rows.Scan(&Type, &Name, &Status, )
+		err = dead_lock_rows.Scan(&Type, &Name, &Status)
 
 		if err != nil {
 			return err
