@@ -37,7 +37,7 @@ func TestRedis_ParseMetrics(t *testing.T) {
 	err := gatherInfoOutput(rdr, &acc, tags)
 	require.NoError(t, err)
 
-	tags = map[string]string{"host": "redis.net", "replication_role": "master"}
+	tags = map[string]string{"host": "redis.net", "replication_role": "main"}
 	fields := map[string]interface{}{
 		"uptime":                         int64(238),
 		"lru_clock":                      int64(2364819),
@@ -80,8 +80,8 @@ func TestRedis_ParseMetrics(t *testing.T) {
 		"pubsub_channels":                int64(0),
 		"pubsub_patterns":                int64(0),
 		"latest_fork_usec":               int64(0),
-		"connected_slaves":               int64(0),
-		"master_repl_offset":             int64(0),
+		"connected_subordinates":               int64(0),
+		"main_repl_offset":             int64(0),
 		"repl_backlog_active":            int64(0),
 		"repl_backlog_size":              int64(1048576),
 		"repl_backlog_first_byte_offset": int64(0),
@@ -108,7 +108,7 @@ func TestRedis_ParseMetrics(t *testing.T) {
 		fields["rdb_last_save_time_elapsed"].(int64),
 		2) // allow for 2 seconds worth of offset
 
-	keyspaceTags := map[string]string{"host": "redis.net", "replication_role": "master", "database": "db0"}
+	keyspaceTags := map[string]string{"host": "redis.net", "replication_role": "main", "database": "db0"}
 	keyspaceFields := map[string]interface{}{
 		"avg_ttl": int64(0),
 		"expires": int64(0),
@@ -188,11 +188,11 @@ pubsub_patterns:0
 latest_fork_usec:0
 
 # Replication
-role:master
-connected_slaves:0
-master_replid:8c4d7b768b26826825ceb20ff4a2c7c54616350b
-master_replid2:0000000000000000000000000000000000000000
-master_repl_offset:0
+role:main
+connected_subordinates:0
+main_replid:8c4d7b768b26826825ceb20ff4a2c7c54616350b
+main_replid2:0000000000000000000000000000000000000000
+main_repl_offset:0
 second_repl_offset:-1
 repl_backlog_active:0
 repl_backlog_size:1048576

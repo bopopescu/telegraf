@@ -113,7 +113,7 @@ func TestGatherNodeData(t *testing.T) {
 					"/api/json": struct{}{},
 					"/computer/api/json": nodeResponse{
 						Computers: []node{
-							{DisplayName: "master"},
+							{DisplayName: "main"},
 							{DisplayName: "node1"},
 						},
 					},
@@ -144,7 +144,7 @@ func TestGatherNodeData(t *testing.T) {
 					"/computer/api/json": nodeResponse{
 						Computers: []node{
 							{
-								DisplayName: "master",
+								DisplayName: "main",
 								MonitorData: monitorData{
 									HudsonNodeMonitorsArchitectureMonitor: "linux",
 									HudsonNodeMonitorsResponseTimeMonitor: struct {
@@ -182,7 +182,7 @@ func TestGatherNodeData(t *testing.T) {
 				Metrics: []*testutil.Metric{
 					{
 						Tags: map[string]string{
-							"node_name": "master",
+							"node_name": "main",
 							"arch":      "linux",
 							"status":    "online",
 							"disk_path": "/path/1",

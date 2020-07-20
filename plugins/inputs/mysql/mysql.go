@@ -27,7 +27,7 @@ type Mysql struct {
 	GatherUserStatistics                bool     `toml:"gather_user_statistics"`
 	GatherInfoSchemaAutoInc             bool     `toml:"gather_info_schema_auto_inc"`
 	GatherInnoDBMetrics                 bool     `toml:"gather_innodb_metrics"`
-	GatherSlaveStatus                   bool     `toml:"gather_slave_status"`
+	GatherSubordinateStatus                   bool     `toml:"gather_subordinate_status"`
 	GatherBinaryLogs                    bool     `toml:"gather_binary_logs"`
 	GatherTableIOWaits                  bool     `toml:"gather_table_io_waits"`
 	GatherTableLockWaits                bool     `toml:"gather_table_lock_waits"`
@@ -89,7 +89,7 @@ var sampleConfig = `
   gather_innodb_metrics                     = true
   #
   ## gather metrics from SHOW SLAVE STATUS command output
-  gather_slave_status                       = true
+  gather_subordinate_status                       = true
   #
   ## gather metrics from SHOW BINARY LOGS command output
   gather_binary_logs                        = false
@@ -223,7 +223,7 @@ var (
 		"repair by sorting":         uint32(0),
 		"repair done":               uint32(0),
 		"repair with keycache":      uint32(0),
-		"replication master":        uint32(0),
+		"replication main":        uint32(0),
 		"rolling back":              uint32(0),
 		"searching rows for update": uint32(0),
 		"sending data":              uint32(0),
@@ -272,7 +272,7 @@ const (
 const (
 	globalStatusQuery          = `SHOW GLOBAL STATUS`
 	globalVariablesQuery       = `SHOW GLOBAL VARIABLES`
-	slaveStatusQuery           = `SHOW SLAVE STATUS`
+	subordinateStatusQuery           = `SHOW SLAVE STATUS`
 	binaryLogsQuery            = `SHOW BINARY LOGS`
 	infoSchemaProcessListQuery = `
         SELECT COALESCE(command,''),COALESCE(state,''),count(*)
@@ -456,8 +456,8 @@ func (m *Mysql) gatherServer(serv string, acc telegraf.Accumulator) error {
 		}
 	}
 
-	if m.GatherSlaveStatus {
-		err = m.gatherSlaveStatuses(db, serv, acc)
+	if m.GatherSubordinateStatus {
+		err = m.gatherSubordinateStatuses(db, serv, acc)
 		if err != nil {
 			return err
 		}
@@ -571,13 +571,13 @@ func (m *Mysql) gatherGlobalVariables(db *sql.DB, serv string, acc telegraf.Accu
 	return nil
 }
 
-// gatherSlaveStatuses can be used to get replication analytics
-// When the server is slave, then it returns only one row.
+// gatherSubordinateStatuses can be used to get replication analytics
+// When the server is subordinate, then it returns only one row.
 // If the multi-source replication is set, then everything works differently
 // This code does not work with multi-source replication.
-func (m *Mysql) gatherSlaveStatuses(db *sql.DB, serv string, acc telegraf.Accumulator) error {
+func (m *Mysql) gatherSubordinateStatuses(db *sql.DB, serv string, acc telegraf.Accumulator) error {
 	// run query
-	rows, err := db.Query(slaveStatusQuery)
+	rows, err := db.Query(subordinateStatusQuery)
 	if err != nil {
 		return err
 	}
@@ -610,7 +610,7 @@ func (m *Mysql) gatherSlaveStatuses(db *sql.DB, serv string, acc telegraf.Accumu
 				col = strings.ToLower(col)
 			}
 			if value, ok := m.parseValue(*vals[i].(*sql.RawBytes)); ok {
-				fields["slave_"+col] = value
+				fields["subordinate_"+col] = value
 			}
 		}
 		acc.AddFields("mysql", fields, tags)
@@ -2208,7 +2208,7 @@ func findThreadState(rawCommand, rawState string) string {
 	}
 
 	if command == "binlog dump" {
-		return "replication master"
+		return "replication main"
 	}
 	// if no mappings found and state is invalid, then return "other" state
 	return "other"
